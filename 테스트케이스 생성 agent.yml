@@ -1,0 +1,575 @@
+app:
+  description: 요구사항을 통한 테스트케이스 생성 agent
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 테스트케이스 생성 agent
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.7.18@acb5e6b40d0776c3b35d03c2deb08ff7eb565dbe5bc30fb38f053b6f737d8820
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/cohere:0.0.9@fb60d71658abaadef02fcbd3f7cc629e97ac2dd7e48025a6b2a3486f9f58f2a4
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: knowledge-retrieval
+      id: 1774362064618-source-1774190664790-target
+      selected: false
+      source: '1774362064618'
+      sourceHandle: source
+      target: '1774190664790'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1774190664790-source-1774179897819-target
+      selected: false
+      source: '1774190664790'
+      sourceHandle: source
+      target: '1774179897819'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1774179897819-source-1774524889303-target
+      selected: false
+      source: '1774179897819'
+      sourceHandle: source
+      target: '1774524889303'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1774179892703-source-1775128309299-target
+      selected: false
+      source: '1774179892703'
+      sourceHandle: source
+      target: '1775128309299'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: document-extractor
+      id: 1775128309299-true-1774362064618-target
+      selected: false
+      source: '1775128309299'
+      sourceHandle: 'true'
+      target: '1774362064618'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1775128425789-source-17751285242850-target
+      selected: false
+      source: '1775128425789'
+      sourceHandle: source
+      target: '17751285242850'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1775128309299-false-1775129192386-target
+      selected: false
+      source: '1775128309299'
+      sourceHandle: 'false'
+      target: '1775129192386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1775129192386-source-1775128425789-target
+      selected: false
+      source: '1775129192386'
+      sourceHandle: source
+      target: '1775128425789'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 17751285242850-source-1775485619018-target
+      source: '17751285242850'
+      sourceHandle: source
+      target: '1775485619018'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1775485619018-source-1775131043623-target
+      source: '1775485619018'
+      sourceHandle: source
+      target: '1775131043623'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hint: ''
+          label: requirements_doc
+          options: []
+          placeholder: ''
+          required: false
+          type: file
+          variable: requirements_doc
+        - default: N
+          hint: ''
+          label: addFileYn
+          max_length: 1
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: addFileYn
+        - hint: ''
+          label: jsonData
+          max_length: 4000
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: jsonData
+      height: 160
+      id: '1774179892703'
+      position:
+        x: -64.4912118276892
+        y: 297.4936372432697
+      positionAbsolute:
+        x: -64.4912118276892
+        y: 297.4936372432697
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1774190664790'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: ea766669-b498-4163-b8e5-5bdacc9d2fcd
+          role: system
+          text: "당신은 시스템 요구사항을 분석하여 빈틈없는 테스트 케이스를 설계하는 시니어 QA 엔지니어입니다. \n제공된 [요구사항\
+            \ 문서]와 [참고 지식]을 바탕으로 테스트 케이스를 도출하세요. \n\n[지시사항] \n1. 인사말이나 부연 설명 없이 오직\
+            \ CSV 형식의 텍스트만 출력할 것. \n2. 각 필드는 쉼표(,)로 구분하며, 필드 내용 안에 쉼표나 줄바꿈이 포함될 경우\
+            \ 반드시 큰따옴표(\"\")로 감쌀 것. \n3. CSV의 첫 번째 줄은 반드시 아래의 헤더(Header)로 구성할 것. \n\
+            4. 출력 결과는 반드시 마크다운 코드 블록(csv 로 시작하고 로 끝나는 형태) 안에 작성해\n\n헤더: 프로젝트ID,테스트케이스ID,테스트케이스명,프로그램명,테스트데이터,구분,우선순위\n\
+            \n[참고 지식] {{#context#}}\n[요구사항 문서] {{#1774362064618.text#}}"
+        - id: 7a098598-9177-41a5-a342-6959498999ec
+          role: user
+          text: 위 지시사항에 따라 테스트케이스를 생성해줘.
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1774179897819'
+      position:
+        x: 1301.5419595145177
+        y: 262.21654505407025
+      positionAbsolute:
+        x: 1301.5419595145177
+        y: 262.21654505407025
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - /du6G2E6hiUszzhdEBWbw3HdulckPo8qgee1plbG3Nm3gh43BmQX8ElKJRhcAI7w
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-english-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1774362064618'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 지식 검색
+        type: knowledge-retrieval
+      height: 89
+      id: '1774190664790'
+      position:
+        x: 987.8847966566485
+        y: 262.21654505407025
+      positionAbsolute:
+        x: 987.8847966566485
+        y: 262.21654505407025
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_array_file: false
+        selected: false
+        title: Doc 추출기
+        type: document-extractor
+        variable_selector:
+        - '1774179892703'
+        - requirements_doc
+      height: 103
+      id: '1774362064618'
+      position:
+        x: 640.9982669315976
+        y: 262.21654505407025
+      positionAbsolute:
+        x: 640.9982669315976
+        y: 262.21654505407025
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1774179897819'
+          - text
+          value_type: string
+          variable: result_file
+        selected: false
+        title: 출력
+        type: end
+      height: 87
+      id: '1774524889303'
+      position:
+        x: 1707.5040835894495
+        y: 246.25531820135586
+      positionAbsolute:
+        x: 1707.5040835894495
+        y: 246.25531820135586
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 6706ec6f-7358-4dfd-a481-fea192cec463
+            value: Y
+            varType: string
+            variable_selector:
+            - '1774179892703'
+            - addFileYn
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 123
+      id: '1775128309299'
+      position:
+        x: 278.27718618433255
+        y: 332.43797839643116
+      positionAbsolute:
+        x: 278.27718618433255
+        y: 332.43797839643116
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - /du6G2E6hiUszzhdEBWbw3HdulckPo8qgee1plbG3Nm3gh43BmQX8ElKJRhcAI7w
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-english-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1775129192386'
+        - convertedText
+        retrieval_mode: multiple
+        selected: false
+        title: 지식 검색 (JSON)
+        type: knowledge-retrieval
+      height: 89
+      id: '1775128425789'
+      position:
+        x: 926.2479794527836
+        y: 454.12442217622225
+      positionAbsolute:
+        x: 926.2479794527836
+        y: 454.12442217622225
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1775128425789'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: ea766669-b498-4163-b8e5-5bdacc9d2fcd
+          role: system
+          text: "당신은 시스템 요구사항을 분석하여 빈틈없는 테스트 케이스를 설계하는 시니어 QA 엔지니어입니다. 제공된 [요구사항 문서]와\
+            \ [참고 지식]을 바탕으로 테스트 케이스를 설계하세요.\n\n [출력 형식 및 제약사항] - 매우 중요 \n1. 답변은 반드시\
+            \ 유효한 JSON 배열(Array) 형식으로만 출력해야 합니다. \n2. 마크다운 코드 블록 기호(예: ```json 또는\
+            \ ```)를 절대 사용하지 마세요. 오직 [ 로 시작해서 ] 로 끝나는 순수 JSON 데이터만 출력하세요. \n3. 줄바꿈(\\\
+            n)이나 탭(\\t) 문자를 최소화하고 오직 JSON 문법에 맞는 데이터만 출력하세요.\n4. 인사말, 서론, 결론, 부연 설명을\
+            \ 절대 포함하지 마세요. (No Prose, Just JSON) \n5. JSON 내의 키(Key) 명칭은 반드시 아래 영문명을\
+            \ 사용하세요: \n- projectId,  // 프로젝트ID \ntestCaseId, // 테스트케이스ID \ntestCaseName,\
+            \ // 테스트케이스명 \nprogramName, // 프로그램명 \ntestData, // 테스트데이터 \ntype, //\
+            \ 구분  \npriority, // 우선순위\n\n\n[JSON 구조 예시] \n[ { \"projectId\": \"프로젝트ID\"\
+            , \"testCaseId\": \"테스트케이스ID\", \"testCaseName\": \"테스트케이스명\", \"programName\"\
+            : \"프로그램명\", \"testData\": \"테스트데이터\", \"type\": \"구분\", \"priority\"\
+            : \"우선순위\" } ]\n\n[참고 지식] {{#context#}}\n[요구사항 문서] {{#1774179892703.jsonData#}}"
+        - id: 7a098598-9177-41a5-a342-6959498999ec
+          role: user
+          text: 위 지시사항에 따라 테스트케이스를 생성해줘.
+        selected: false
+        title: LLM (json)
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '17751285242850'
+      position:
+        x: 1319.3718174258497
+        y: 454.12442217622225
+      positionAbsolute:
+        x: 1319.3718174258497
+        y: 454.12442217622225
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\n\ndef main(jsonData):\n    # 1. 입력값이 문자열(String)로 들어올\
+          \ 경우를 대비해 파싱\n    if isinstance(jsonData, str):\n        try:\n        \
+          \    data_list = json.loads(jsonData)\n        except:\n            return\
+          \ {\"error\": \"JSON 파싱에 실패했습니다.\"}\n    else:\n        data_list = jsonData\n\
+          \n    # 결과물을 담을 리스트\n    processed_texts = []\n    \n    # 2. 각 항목을 서술형\
+          \ 문장으로 변환\n    for item in data_list:\n        # 영문 키를 한글 명칭으로 매핑하며 문장 생성\n\
+          \        text = (\n            f\"프로젝트 ID {item.get('projectId', '-')}의\
+          \ '{item.get('title', '-')}'에 대한 요구사항입니다. \"\n            f\"상세 업무 내용은 다음과\
+          \ 같습니다: {item.get('description', '-')}. \"\n            f\"이 작업은 {item.get('devType',\
+          \ '-')} 개발 부문에 해당하며, \"\n            f\"{item.get('isNew', '-')} 과제입니다.\
+          \ \"\n            f\"DB 작업 여부는 {item.get('isDbTask', '-')}이며, \"\n     \
+          \       f\"금전 처리 관련 여부는 {item.get('isFinancial', '-')}입니다.\"\n        )\n\
+          \        processed_texts.append(text)\n\n    # 3. 모든 요구사항을 하나로 합침 (RAG 컨텍스트용)\n\
+          \    full_text = \"\\n\\n\".join(processed_texts)\n    \n    # 4. RAG 검색에\
+          \ 최적화된 핵심 쿼리 추출 (제목 + 업무내용 앞부분)\n    first_item = data_list[0] if data_list\
+          \ else {}\n    search_query = f\"{first_item.get('title', '')} {first_item.get('description',\
+          \ '')[:50]}\"\n\n    return {\n        \"convertedText\": full_text\n  \
+          \  }"
+        code_language: python3
+        outputs:
+          convertedText:
+            children: null
+            type: string
+        selected: false
+        title: 코드
+        type: code
+        variables:
+        - value_selector:
+          - '1774179892703'
+          - jsonData
+          value_type: string
+          variable: jsonData
+      height: 51
+      id: '1775129192386'
+      position:
+        x: 600.1007953566098
+        y: 454.12442217622225
+      positionAbsolute:
+        x: 600.1007953566098
+        y: 454.12442217622225
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1775485619018'
+          - result
+          value_type: string
+          variable: text
+        selected: false
+        title: 출력 (JSON)
+        type: end
+      height: 87
+      id: '1775131043623'
+      position:
+        x: 2040.992410527897
+        y: 454.12442217622225
+      positionAbsolute:
+        x: 2040.992410527897
+        y: 454.12442217622225
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "function main({input_str}) {\n    // 1. 문자열을 객체로 변환\n    const parsedData\
+          \ = JSON.parse(input_str);\n    \n    // 2. 결과 반환 (이미 배열 객체가 됨)\n    return\
+          \ {\n        result: parsedData\n    }\n}"
+        code_language: javascript
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: true
+        title: 코드 (JSON parse)
+        type: code
+        variables:
+        - value_selector:
+          - '17751285242850'
+          - text
+          value_type: string
+          variable: input_str
+      height: 51
+      id: '1775485619018'
+      position:
+        x: 1707.5040835894495
+        y: 460.6764861424399
+      positionAbsolute:
+        x: 1707.5040835894495
+        y: 460.6764861424399
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -285.0733674528002
+      y: 171.60853746339808
+      zoom: 0.7889334756404381
+  rag_pipeline_variables: []
