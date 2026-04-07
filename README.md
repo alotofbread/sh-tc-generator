@@ -2,7 +2,7 @@
 요구사항 정의서를 기반으로 최적화된 테스트 케이스(TC)를 자동 생성하는 Dify 기반 AI 에이전트입니다.
 <br><br>
 
-<h2>모델 구성 tool 및 api </h2>
+<h2>📋 모델 구성 tool 및 api </h2>
 - dify<br>
 - cohere rerank<br>
 - gemini-embbeding-001<br>
