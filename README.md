@@ -5,7 +5,7 @@
 <h2>모델 구성 tool 및 api </h2>
 - dify<br>
 - cohere rerank<br>
-- gemini-embbed<br>
+- gemini-embbeding-001<br>
 - gemini-2.5 flash ( claude sonnet 으로 변경 필요 ) 
 <br><br>
 <h2>📋 사용 방법 (Usage)</h2>
