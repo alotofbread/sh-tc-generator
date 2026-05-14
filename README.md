@@ -38,6 +38,31 @@
 </pre>
 <br><br><br><br>
 
+<h3> API 연동 방법 </h3>
+- url : http://publicip/v1/workflows/run
+-- header 'Authorization: Bearer {api_key}' 
+-- header 'Content-Type: application/json' 
+-- data-raw '{
+  "inputs": {
+    "requirements_doc" : "",
+    "addFileYn" : "N",
+    "jsonData":
+    [
+      {
+        "projectId": "PRJ-INS-001",
+        "title": "사고접수",
+        "description": "인보험 사고접수 페이지에서 추가 청구 기능 개발필요\n추가 청구 체크박스 체크 후 사고접수 저장을 하게되면 추가 청구 되도록 구현",
+        "devType": "화면",
+        "isNew": "신규",
+        "isDbTask": "비대상",
+        "isFinancial": "대상"
+      }
+    ]
+  },
+  "response_mode": "streaming",
+  "user": "abc-123"
+}'
+
 <h2>📋 지식 설정 방법 (RAG_테스트자료 첨부파일 활용)</h2>
 <img width="1358" height="1247" alt="image" src="https://github.com/user-attachments/assets/ed44ca2f-63d1-433a-ba29-ace14f512024" />
 <img width="1358" height="781" alt="image" src="https://github.com/user-attachments/assets/e36e1593-0fd1-43ac-87f7-3674ec6795c3" />
