@@ -38,29 +38,33 @@
 </pre>
 <br><br><br><br>
 
-<h3> API 연동 방법 </h3>
-- url : http://publicip/v1/workflows/run<br>
--- header 'Authorization: Bearer {api_key}'<br> 
--- header 'Content-Type: application/json'<br>
--- data-raw '{<br>
+<h3> API 연동 방법 </h3><br>
+
+<h4>엑셀 첨부파일 post</h4><br>
+url : http://publicip/v1/workflows/run<br>
+header 'Authorization: Bearer {api_key}'<br> 
+header 'Content-Type: application/json'<br>
+request body '{<br>
     "inputs": {<br>
         "requirements_doc": {<br>
             "type": "document",<br>
             "transfer_method": "local_file",<br>
             "upload_file_id": "72fa9618-8f89-4a37-9b33-7e1178a24a67"<br>
         },<br>
+        "addFileYn": "Y"br>
+    },<br>
+    "response_mode": "blocking",<br>
+    "user": "developer_01"<br>
+}'<br><br>
+
+<h4>JSON post</h4><br>
+url : http://publicip/v1/workflows/run<br>
+header 'Authorization: Bearer {api_key}'<br> 
+header 'Content-Type: application/json'<br>
+request body '{<br>
+    "inputs": {<br>
         "addFileYn": "N",<br>
-        "jsonData": [<br>
-            {<br>
-                "projectId": "PRJ-INS-001",<br>
-                "title": "사고접수",<br>
-                "description": "인보험 사고접수 페이지에서 추가 청구 기능 개발필요\n추가 청구 체크박스 체크 후 사고접수 저장을 하게되면 추가 청구 되도록 구현",<br>
-                "devType": "화면",<br>
-                "isNew": "신규",<br>
-                "isDbTask": "비대상",<br>
-                "isFinancial": "대상"<br>
-            }<br>
-        ]<br>
+        "jsonData": "[{\"projectId\": \"PRJ-INS-001\", \"title\": \"사고접수\", \"description\": \"인보험 사고접수 페이지에서 추가 청구 기능 개발필요\", \"devType\": \"화면\", \"isNew\": \"신규\", \"isDbTask\": \"비대상\", \"isFinancial\": \"대상\"}]"<br>
     },<br>
     "response_mode": "blocking",<br>
     "user": "developer_01"<br>
